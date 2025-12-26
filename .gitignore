@@ -1,5 +1,7 @@
 __pycache__/
 venv/
+myenv/
+.myenv
 .env/
 .ipynb_checkpoints/
 *.csv
