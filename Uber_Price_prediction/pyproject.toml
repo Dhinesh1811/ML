@@ -1,13 +1,18 @@
 [project]
-name = "uber-prediction"
+name = "uber-price-prediction"
 version = "0.1.0"
-description = "To predict the number of weekly Rides"
+description = "This Project is used to predict the Uber price"
 authors = [
     {name = "Dhinesh1811"}
 ]
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [
+    "scikit-learn (==1.4.2)",
+    "pandas (==2.3.3)",
+    "numpy (==2.2.6)",
+    "flask (==3.1.2)",
+    "ipykernel (>=7.1.0,<8.0.0)"
 ]
 
 
