@@ -1,11 +1,12 @@
 # ML
-Machine Learning Projects
+Basic Machine Learning Project
 
+Covering:
 
-Load data
-
-Handle missing values
-
-Normalize numbers
-
-Split data for ML
+  Load data
+  
+  Handle missing values
+  
+  Normalize numbers
+  
+  Split data for ML
