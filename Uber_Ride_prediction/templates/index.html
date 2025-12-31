@@ -1,37 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
-    <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Uber Rides Prediction</title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <script src="https://kit.fontawesome.com/5f3f547070.js" crossorigin="anonymous"></script>
+
+    <!-- AOS Animation -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- CSS Sheet -->
+    <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+
 </head>
 <body>
-    
-    <div class="container">
-        <h2 class='container-heading'><span class="heading_font">Uber Rides Predictor</span></h2>
-        <div class='description'>
-            <p>A Machine Learning Web App, Built with Flask</p>
+
+    <div class="container" data-aos="fade-down">
+        <h2 class="container-heading"><i class="fas fa-car"></i> Uber Rides Predictor</h2>
+        <div class="description">
+            <p>AI-powered ride demand prediction using Machine Learning</p>
         </div>
     </div>
 
-    <div class="ml-container">
-        <form action="{{url_for('predict')}}" method="POST">
-            <input class="form-input" type="text" name="Priceperweek" placeholder="Price per week eg. 25" required="required"><br>
-            <input class="form-input" type="text" name="Population" placeholder="Population eg.1800000" required="required"><br>
-            <input class="form-input" type="text" name="Monthlyincome" placeholder="Monthly income eg. 20000" required="required"><br>
-            <input class="form-input" type="text" name="Averageparkingpermonth" placeholder="Average parking per month eg. 90" required="required"><br>
-            <button type="submit" class="my-cta-button">Predict</button>
+    <div class="ml-container" data-aos="zoom-in">
+        <form action="{{ url_for('predict') }}" method="POST">
+            <input class="form-input" type="number" step="any" name="Priceperweek" value="{{ price }}" placeholder="💲 Price per week (eg. 25)" required />
+            <input class="form-input" type="number" name="Population" value="{{ population }}" placeholder="👥 Population (eg. 1800000)" required />
+            <input class="form-input" type="number" name="Monthlyincome" value="{{ income }}" placeholder="💰 Monthly income (eg. 20000)" required />
+            <input class="form-input" type="number" name="Averageparkingpermonth" value="{{ parking }}" placeholder="🅿️ Avg parking per month (eg. 90)" required />
+            <button type="submit" class="my-cta-button">🚀 Predict Rides</button>
         </form>
-    </div>
-    <br>
-    <br>
-    {{ predict_text }}
-    <br>
-    <br>
 
+        {% if predict_text %}
+        <div class="result-card" data-aos="fade-up">
+
+            <h3>📊 Prediction Result</h3>
+
+            <ul>
+                <li><strong>Price per week:</strong> ${{ price }}</li>
+                <li><strong>Population:</strong> {{ population }}</li>
+                <li><strong>Monthly income:</strong> ${{ income }}</li>
+                <li><strong>Avg parking/month:</strong> {{ parking }}</li>
+            </ul>
+
+            <div class="prediction">
+                {{ predict_text }}
+            </div>
+
+        </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        © 2025 Uber Rides ML App | Built with Flask & ❤️
+    </footer>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 900, once: true });
+    </script>
 
 </body>
 </html>

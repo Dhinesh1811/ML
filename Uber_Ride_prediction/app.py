@@ -13,11 +13,23 @@ def home():
 
 @app.route('/predict',methods=['POST'])
 def predict():
+    
+    price = int(request.form["Priceperweek"])
+    population = int(request.form["Population"])
+    income = int(request.form["Monthlyincome"])
+    parking = int(request.form["Averageparkingpermonth"])
+
+    
     int_features = [int(i) for i in request.form.values()]
     final_features = np.array(int_features).reshape(1, -1)
     prediction = model2.predict(final_features)
-    output = round(prediction[0],2)
-    return render_template('index.html', predict_text = "Number of Weekly rides {}".format(math.floor(output)))
-
+    output = (round(prediction[0],2))
+    return render_template("index.html",
+        predict_text=f"🚗 Predicted Weekly Rides: {int(output):,}",
+        price=price,
+        population=int(population),
+        income=int(income),
+        parking=int(parking)
+    )
 if __name__ == '__main__':
     app.run(debug=True)

@@ -1,5 +1,6 @@
 
 Steps:
+Execute all the cells in ML_Model.ipynb to create the Model
 
 python -m venv myenv
 
